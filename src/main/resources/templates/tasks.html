@@ -9,12 +9,12 @@
 		<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
 	      <div class="container">
 	        <div class="navbar-header">
-	          <a class="navbar-brand" href="#">Sistema de Boletos</a>
+	          <a class="navbar-brand" href="#">Boletos vencidos</a>
 	        </div>
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
 	            <li>
-	              <a href="#" th:href="@{/}">Home</a>
+	              <a href="/" th:href="@{/}">Home</a>
 	            </li>
 	            <li>
 	              <a href="tasks" th:href="@{tasks}"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Atrasados</a>
@@ -40,11 +40,12 @@
 			<div class="jumbotron" align="center" style="margin-top: 100px;">
 				<h1>Sistema de Boletos</h1>
 				<div align="center">
-					<a href="listaconvidados" class="btn btn-lg btn-primary">Clique aqui para ver todos os boletos</a>
+					<a href="listaconvidados" class="btn btn-lg btn-primary"></a>
 				</div>
 			</div>
 		</div>
-	    
+	     <div th:insert="footer">
+         </div>
 	    <script src="jquery1.11.3/jquery.min.js"></script>
 	    <script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
