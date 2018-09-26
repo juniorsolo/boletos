@@ -7,12 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BoletoController {
 
 	@RequestMapping("/")
-	public String index() {
-		return "index";
+	public String home() {
+		return "home";
 	}
 	
 	@RequestMapping("/tasks")
 	public String tasks() {
 		return "tasks";
+	}
+	
+	@RequestMapping("/cadastro")
+	public String cadastro() {
+		return "cadastro";
 	}
 }

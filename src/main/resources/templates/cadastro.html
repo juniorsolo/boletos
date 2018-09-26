@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: header"></head>
+	<body>
+		<div th:replace="template :: importScripts"></div>	
+		<div th:replace="template :: menu"></div>
+		
+		<div class="container" style="max-width:970px;">
+			
+			<div class="alert alert-primary" role="alert">
+				  Cadastro de Boletos
+			</div>
+			
+			<nav class="navbar navbar-light" style="background-color: #e3f2fd;">	
+				<form action="">
+					<div class="form-row">
+				  		<div class="form-group col-md-6">
+				      		<label for="inputCPF">CPF</label>
+				      		<input type="text" class="form-control" id="inputCPF" placeholder="CPF">
+				    	</div>
+				    	<div class="form-group col-md-6">
+				    		<label for="inputEmail">Email</label>
+				        	<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+				    	</div>
+				    </div>
+					<div class="form-row">
+				    	<div class="form-group col-md-9">
+				    		<label for="inputNome">Nome Completo</label>
+				        	<input type="text" class="form-control" id="inputNome" placeholder="Nome Completo">
+				    	</div>
+				    	<div class="form-group col-md-3">
+				        	<label for="inputParcela">Num. Parcelas</label>
+				        	<input type="number" class="form-control" id="inputParcela" placeholder="Numero de Parcelas">
+				        </div>
+				    </div>
+				    <div class="form-row">
+				    	<div class="form-group col-md-12">
+				    		<label for="inputDescricao">Descrição da compra</label>
+				        	<input type="text" max="60" class="form-control" id="inputDescricao">
+				    	</div>
+				    </div>
+				    <div class="form-row">
+				    	<div class="form-group col-md-4">
+				    		<label for="inputDataParcela">Data Primeira parcela</label>
+				        	<input type="text" class="form-control" id="inputDataParcela">
+				        </div>
+				    	<div class="form-group col-md-4">
+				    		<label for="inputTelefone">Telefone Residencial</label>
+				        	<input type="text" class="form-control" id="inputTelefone" placeholder="(xx) xxxx-xxxx">
+				        </div>
+				        <div class="form-group col-md-4">
+				    		<label for="inputCelular">Celular</label>
+				        	<input type="text" class="form-control" id="inputCelular" placeholder="(xx) xxxxx-xxxx">
+				        </div>
+				    </div>
+				</form>
+				
+				<script type="text/javascript">
+				   $("#inputTelefone").mask("(00) 0000-0000");
+				   $("#inputCelular").mask("(00) 00000-0000");
+				   $('#inputDataParcela').mask('99/99/9999',{placeholder:"dd/MM/yyyy"});
+				</script>
+			</nav>
+		</div>
+		
+	</body>
+</html>
