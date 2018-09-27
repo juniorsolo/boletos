@@ -28,15 +28,15 @@ public class BoletoController {
 	
 	@GetMapping("/cadastro")
 	public ModelAndView cadastro(Boleto boleto) {
-		ModelAndView mv = new ModelAndView("/cadastro");
+		ModelAndView mv = new ModelAndView("/cadastro"); 
 		mv.addObject("boleto", boleto);
 		return mv;
 	}
+	
 	@PostMapping(value = "/salvarBoleto")
-	public ModelAndView salvaCandidato( Boleto boleto) {
+	public ModelAndView salvarBoleto( Boleto boleto) {
 		
-			service.save(boleto);
-						
+		service.save(boleto);					
 		return this.cadastro(new Boleto());
 	}
 }
