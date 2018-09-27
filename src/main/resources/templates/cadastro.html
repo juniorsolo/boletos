@@ -2,16 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="template :: header"></head>
 	<body>
-		<div th:replace="template :: importScripts"></div>	
-		<div th:replace="template :: menu"></div>
 		
+		<div th:replace="template :: menu"></div>
+		<div th:replace="template :: importScripts"></div>
 		<div class="container" style="max-width:970px;">
 			
-			<div class="alert alert-primary" role="alert">
-				  Cadastro de Boletos
-			</div>
+			<h2 style="text-align: center;margin-bottom: 30px;">
+				<span class="label label-info">Cadastro de Boletos</span>
+			</h2>
 			
-			<nav class="navbar navbar-light" style="background-color: #e3f2fd;">	
+			<nav class="navbar navbar-light" style="background-color: #e3f2fd; padding-top: 25px;">	
 				<form action="">
 					<div class="form-row">
 				  		<div class="form-group col-md-6">
@@ -36,7 +36,7 @@
 				    <div class="form-row">
 				    	<div class="form-group col-md-12">
 				    		<label for="inputDescricao">Descrição da compra</label>
-				        	<input type="text" max="60" class="form-control" id="inputDescricao">
+				        	<input type="text" maxlength="60" class="form-control" id="inputDescricao">
 				    	</div>
 				    </div>
 				    <div class="form-row">
@@ -62,6 +62,6 @@
 				</script>
 			</nav>
 		</div>
-		
+			
 	</body>
 </html>

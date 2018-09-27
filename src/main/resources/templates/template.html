@@ -2,7 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
 </head>
 	<!-- Menu do sistema  -->
 	<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="menu" style="position: static; margin-bottom: 15px;">
@@ -35,6 +37,7 @@
 	        </div>
 	    </div>
 	</div>
+
 	<!-- informações da  home -->
 	<div class="container" th:fragment="infoHome">
 		<div class="jumbotron" align="center" >
@@ -46,8 +49,8 @@
 	</div>
 	<!-- Importações de scritps -->
 	<div th:fragment="importScripts">
- 		<script src="jquery1.11.3/jquery.min.js"></script>
- 		<script src="jquery1.14.11/jqueryMask.min.js"></script>
+ 		<script src="jquery3.3.1/jquery.min.js"></script>
+ 		<script src="jquerymask/jqueryMask.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</div>
 </html>
