@@ -17,10 +17,11 @@
 				  		<div class="form-group col-md-6">
 				      		<label for="inputCPF">CPF</label>
 				      		<input type="text" maxlength="15"  class="form-control" th:field="*{cpf}" id="inputCPF" placeholder="CPF">
+				      		<span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}">Preencher corretamente </span>
 				    	</div>
 				    	<div class="form-group col-md-6">
 				    		<label for="inputEmail">Email</label>
-				        	<input type="email" maxlength="30" class="form-control" th:field="*{email}" id="inputEmail" placeholder="Email">
+				        	<input type="email" maxlength="30"  class="form-control" th:field="*{email}" id="inputEmail" placeholder="Email">
 				    	</div>
 				    </div>
 					<div class="form-row">
@@ -35,8 +36,8 @@
 				    </div>
 				    <div class="form-row">
 				    	<div class="form-group col-md-12">
-				    		<label for="inputDescricao">Descrição da compra</label>
-				        	<input type="text" maxlength="150" class="form-control" th:field="*{descricao}" id="inputDescricao">
+				    		<label for="inputDescricao">Descrição</label>
+				        	<input type="text" maxlength="150" class="form-control" th:field="*{descricao}" id="inputDescricao" placeholder="Decrição da compra">
 				    	</div>
 				    </div>
 				    <div class="form-row">
@@ -55,15 +56,17 @@
 				    </div>
 					</nav>
 					<div id="buttonsCadastro">
-						<button type="submit" class="btn btn-primary" >Salvar</button>
-				        <a class="btn btn-warning" th:href="@{/}" >Voltar</a>
+						<button id="btnCadatraBoleto" type="submit" class="btn btn-primary">Salvar</button>
+				        <a class="btn btn-warning" th:href="@{/}" onclick="openModal();" >Voltar</a>
 					</div>
 				</form>
 				
 				<script type="text/javascript">
+				   $('#inputCPF').mask("000.000.000-00");
 				   $("#inputTelefone").mask("(00) 0000-0000");
 				   $("#inputCelular").mask("(00) 00000-0000");
 				   $('#inputDataParcela').mask('99/99/9999',{placeholder:"dd/MM/yyyy"});
+   
 				</script>
 		</div>
 			

@@ -6,7 +6,7 @@
 	 
 	<link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 	<link th:href="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
-	
+	<link th:href="@{modal/css/jquery.loadingModal.min.css}" rel="stylesheet" />
 </head>
 	<!-- Menu do sistema  -->
 	<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="menu" style="position: static; margin-bottom: 15px;">
@@ -55,6 +55,24 @@
  		<script src="jquery3.3.1/jquery.min.js"></script>
  		<script src="jquerymask/jqueryMask.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
-	
+		<script src="modal/js/jquery.loadingModal.min.js"></script>
+		<script type="text/javascript">
+		
+		function openModal(){
+			$('body').loadingModal({
+				  position: 'auto',
+				  text: 'Carregando...',
+				  color: '#fff',
+				  opacity: '0.7',
+				  backgroundColor: 'rgb(0,0,0)',
+				  animation: 'circle'
+				});
+		};
+		
+		function closeModal(){
+			$('body').loadingModal('destroy');
+		};
+		</script>
+		
 	</div>
 </html>

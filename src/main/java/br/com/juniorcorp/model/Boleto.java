@@ -9,10 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
+import org.springframework.lang.NonNull;
 
 @Entity(name="boleto")
 public class Boleto {
@@ -20,22 +23,32 @@ public class Boleto {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NonNull
+	@NotBlank
+	@Max(15)
 	@Column(length=15)
 	private String cpf;
 	
 	@Column(length=30)
 	private String email;
 	
+	@NonNull
+	@Max(60)
 	@Column(length=60)
 	private String nome;
 	
-	@Column(length=2)
+	@NonNull
 	@Positive
+	@Column(length=2)
+	@Min(1)
+	@Max(50)
 	private Integer numParcelas;
 	
+	@Max(150)
 	@Column(length=150)
 	private String descricao;
 	
+	@NonNull
 	@Temporal(value=TemporalType.DATE)
 	private Date dataPrimeiraParcela;
 	
@@ -43,9 +56,11 @@ public class Boleto {
 	@CreationTimestamp
 	private Date dataCriacao;
 	
+	@Max(14)
 	@Column(length=14)
 	private String telResidencial;
 	
+	@Max(15)
 	@Column(length=15)
 	private String celular;
 	
