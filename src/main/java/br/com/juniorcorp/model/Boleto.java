@@ -1,12 +1,15 @@
 package br.com.juniorcorp.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
@@ -15,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
 @Entity(name="boleto")
@@ -25,7 +29,6 @@ public class Boleto {
 	
 	@NonNull
 	@NotBlank
-	@Max(15)
 	@Column(length=15)
 	private String cpf;
 	
@@ -33,22 +36,20 @@ public class Boleto {
 	private String email;
 	
 	@NonNull
-	@Max(60)
 	@Column(length=60)
 	private String nome;
 	
 	@NonNull
 	@Positive
 	@Column(length=2)
-	@Min(1)
-	@Max(50)
 	private Integer numParcelas;
 	
-	@Max(150)
+	
 	@Column(length=150)
 	private String descricao;
 	
 	@NonNull
+	@DateTimeFormat(pattern="dd/MM/yyyy") 
 	@Temporal(value=TemporalType.DATE)
 	private Date dataPrimeiraParcela;
 	
@@ -56,15 +57,14 @@ public class Boleto {
 	@CreationTimestamp
 	private Date dataCriacao;
 	
-	@Max(14)
 	@Column(length=14)
 	private String telResidencial;
 	
-	@Max(15)
 	@Column(length=15)
 	private String celular;
 	
-	
+	@OneToMany(cascade= {CascadeType.PERSIST, CascadeType.REMOVE},	orphanRemoval=true )	
+	private List<Parcela> parcelas;
 	
 	public Integer getId() {
 		return id;
@@ -125,6 +125,12 @@ public class Boleto {
 	}
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+	public List<Parcela> getParcelas() {
+		return parcelas;
+	}
+	public void setParcelas(List<Parcela> parcelas) {
+		this.parcelas = parcelas;
 	}
 	
 	

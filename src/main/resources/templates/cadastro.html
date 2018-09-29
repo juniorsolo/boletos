@@ -15,8 +15,8 @@
 			<nav class="navbar navbar-light" style="background-color: #e3f2fd; padding-top: 25px;">	
 					<div class="form-row">
 				  		<div class="form-group col-md-6">
-				      		<label for="inputCPF">CPF</label>
-				      		<input type="text" maxlength="15"  class="form-control" th:field="*{cpf}" id="inputCPF" placeholder="CPF">
+				      		<label for="inputCPF">CPF*</label>
+				      		<input type="text" maxlength="15"   class="form-control" th:field="*{cpf}" id="inputCPF" placeholder="CPF">
 				      		<span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}">Preencher corretamente </span>
 				    	</div>
 				    	<div class="form-group col-md-6">
@@ -26,11 +26,11 @@
 				    </div>
 					<div class="form-row">
 				    	<div class="form-group col-md-9">
-				    		<label for="inputNome">Nome Completo</label>
+				    		<label for="inputNome">Nome Completo*</label>
 				        	<input type="text" maxlength="60" class="form-control"th:field="*{nome}" id="inputNome" placeholder="Nome Completo">
 				    	</div>
 				    	<div class="form-group col-md-3">
-				        	<label for="inputParcela">Num. Parcelas</label>
+				        	<label for="inputParcela">Num. Parcelas*</label>
 				        	<input type="number" maxlength="2" class="form-control" th:field="*{numParcelas}" id="inputParcela" placeholder="Numero de Parcelas">
 				        </div>
 				    </div>
@@ -42,8 +42,8 @@
 				    </div>
 				    <div class="form-row">
 				    	<div class="form-group col-md-4">
-				    		<label for="inputDataParcela">Data Primeira parcela</label>
-				        	<input type="text" class="form-control" th:field="*{dataPrimeiraParcela}" id="inputDataParcela">
+				    		<label for="inputDataParcela">Data Primeira parcela*</label>
+				        	<input type="text" class="form-control" th:field="*{dataPrimeiraParcela}"  id="inputDataParcela">
 				        </div>
 				    	<div class="form-group col-md-4">
 				    		<label for="inputTelefone">Telefone Residencial</label>
@@ -55,6 +55,9 @@
 				        </div>
 				    </div>
 					</nav>
+					<div>
+						<h5>OBS: Os campos com *(asterisco) são obrigatórios</h5>
+					</div>
 					<div id="buttonsCadastro">
 						<button id="btnCadatraBoleto" type="submit" class="btn btn-primary">Salvar</button>
 				        <a class="btn btn-warning" th:href="@{/}" onclick="openModal();" >Voltar</a>
