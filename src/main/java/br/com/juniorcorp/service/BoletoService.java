@@ -1,13 +1,18 @@
 package br.com.juniorcorp.service;
 
-import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.juniorcorp.model.Boleto;
@@ -23,7 +28,39 @@ public class BoletoService {
 	@Autowired
 	private BoletoRepository boletoRepo;
 	
-	public void save(Boleto boleto) {
+	public Iterable<Boleto> findAll() throws ServiceException{
+		try {
+			Iterable<Boleto> lista =  boletoRepo.findAll();
+			return lista;
+		}catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	public Page<Boleto> findPaginated(Pageable pageable) {
+			List<Boleto> boletos = (List<Boleto>) boletoRepo.findAll();
+	        int pageSize = pageable.getPageSize();
+	        int currentPage = pageable.getPageNumber();
+	        int startItem = currentPage * pageSize;
+	        List<Boleto> list;
+	 
+	        if (boletos.size() < startItem) {
+	            list = Collections.emptyList();
+	        } else {
+	            int toIndex = Math.min(startItem + pageSize, boletos.size());
+	            list = boletos.subList(startItem, toIndex);
+	        }
+	 
+	        Page<Boleto> boletoPage = new PageImpl<Boleto>(list, PageRequest.of(currentPage, pageSize), boletos.size());
+	 
+	        return boletoPage;
+	    }
+	public void delete(Integer id) {
+		boletoRepo.deleteById(id);
+	}
+	
+	public void save(Boleto boleto) throws ServiceException {
 		try {
 			if(this.validaPrenchimentoBoleto(boleto)) {
 				this.preencheParcelas(boleto);
@@ -31,6 +68,7 @@ public class BoletoService {
 			}
 		}catch (Exception e) {
 			LOG.error(e.getMessage(), e);
+			throw new ServiceException(e.getMessage());
 		}
 	}
 	
@@ -52,10 +90,12 @@ public class BoletoService {
 		}
 	}
 	private Date convertLocalDateInDate(LocalDate ld) {
+		@SuppressWarnings("deprecation")
 		Date dataConvertida = new Date(ld.getYear() - 1900, ld.getMonthValue() - 1, ld.getDayOfMonth());
 		return dataConvertida;
 	}
 	private LocalDate convertDateInLocalDate(Date data ) {
+		@SuppressWarnings("deprecation")
 		LocalDate dataConvertida = LocalDate.of( data.getYear()+1900, data.getMonth() + 1, data.getDate());
 		return dataConvertida;
 	}
@@ -79,7 +119,5 @@ public class BoletoService {
 		return true;
 	}
 	
-	public void delete(Integer id) {
-		boletoRepo.deleteById(id);
-	}
+
 }

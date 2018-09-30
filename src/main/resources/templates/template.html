@@ -7,6 +7,8 @@
 	<link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 	<link th:href="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
 	<link th:href="@{modal/css/jquery.loadingModal.min.css}" rel="stylesheet" />
+	<link th:href="@{modal/css/jquery.modal.min.css}" rel="stylesheet" />
+	
 </head>
 	<!-- Menu do sistema  -->
 	<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="menu" style="position: static; margin-bottom: 15px;">
@@ -17,10 +19,19 @@
 	        <div class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav">
 		            <li>
-		              <a th:href="@{cadastro}">Cadastro</a>
+		              <a th:href="@{consulta}">
+		              	<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Consulta
+		              </a>
 		            </li>
 		            <li>
-		              <a th:href="@{tasks}"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Em Atraso</a>
+		              <a th:href="@{cadastro}">
+		              	<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp; Cadastro
+		              </a>
+		            </li>
+		            <li>
+		              <a th:href="@{tasks}">
+		              	<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Em Atraso
+		              </a>
 		            </li>
 		          </ul>
 		          <ul class="nav navbar-nav navbar-right">
@@ -56,6 +67,7 @@
  		<script src="jquerymask/jqueryMask.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="modal/js/jquery.loadingModal.min.js"></script>
+		<script src="modal/js/jquery.modal.min.js"></script>
 		<script type="text/javascript">
 		
 		function openModal(){

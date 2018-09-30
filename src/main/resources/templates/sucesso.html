@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="template :: header"></head>
+	<body>
+		<div th:replace="template :: menu"></div>
+		<div th:replace="template :: importScripts"></div>	
+
+
+	
+		<div id="modalSucesso" class="modal" style="margin-top: -40%;">
+			<div style="margin: auto; max-width: 749px; text-align: center;">
+			  	<div class="alert alert-success" role="alert">
+					 Operação realizada com sucesso!
+				</div>
+				<a class="btn btn-success" th:href="@{/}" >Ok</a>
+			</div>
+		</div>
+		<script>
+		 	$("#modalSucesso").modal({
+			  escapeClose: false,
+			  clickClose: false,
+			  showClose: false
+			});
+		</script>
+	</body>
+</html>
