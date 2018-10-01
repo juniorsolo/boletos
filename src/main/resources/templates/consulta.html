@@ -14,10 +14,10 @@
 		<table class="table">
 		    <thead class="thead-dark">
 		        <tr style="background-image: linear-gradient(to bottom,#5bc0de 0,#53cef3 100%);">
-		            <th th:text="CPF" />
+		            <th th:text="CPF" style="width: 15%;"/>
 		            <th th:text="Nome" />
-		            <th>Numero de Parcelas</th>
-		            <th th:text="VerParcelas"/>
+		            <th th:text="'Numero de Parcelas'" style="width: 18%;"/>
+		            <th th:text="VerParcelas" style="width: 10%;"/>
 		        </tr>
 		    </thead>
 		    <tbody>
@@ -26,8 +26,8 @@
 		            th:alt-title="'Ver Parcelas'">
 		            <td th:text="${boleto.cpf}" />
 		            <td th:text="${boleto.nome}" />
-		            <td th:text="${boleto.numParcelas}" />
-		            <td><a  th:href="@{/}" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
+		            <td th:text="${boleto.numParcelas}" style="text-align: center;" />
+		            <td style="text-align: center;"><a  th:href="@{/}" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
 		            	<span class="glyphicon glyphicon-eye-open"></span></a>
 		            </td>
 		        </tr>
