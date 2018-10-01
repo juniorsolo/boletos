@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,6 +36,16 @@ public class BoletoService {
 		}catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	public Boleto findOne(Integer id) {
+		try {
+			 Optional<Boleto> boleto = boletoRepo.findById(id);
+			 return boleto.isPresent() ? boleto.get() : null;
+		}catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+			return null;
 		}
 	}
 	
