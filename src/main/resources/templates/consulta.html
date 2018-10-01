@@ -13,71 +13,37 @@
 		
 		<table class="table">
 		    <thead class="thead-dark">
-		        <tr>
+		        <tr style="background-image: linear-gradient(to bottom,#5bc0de 0,#53cef3 100%);">
 		            <th th:text="CPF" />
 		            <th th:text="Nome" />
-		            <th th:text="NumerodeParcelas"/>
+		            <th>Numero de Parcelas</th>
 		            <th th:text="VerParcelas"/>
 		        </tr>
 		    </thead>
 		    <tbody>
 		        <tr th:each="boleto, iStat : ${boletoPage.content}"
-		            th:style="${iStat.odd}? 'font-weight: bold;'"
-		            th:alt-title="${iStat.even}? 'even' : 'Ver'">
+		        	style="background-color: #dff5ff;"
+		            th:alt-title="'Ver Parcelas'">
 		            <td th:text="${boleto.cpf}" />
 		            <td th:text="${boleto.nome}" />
 		            <td th:text="${boleto.numParcelas}" />
-		            <td><a  th:href="@{/}" onclick="openModal();" style="width: 60px; border-color: #1575ad;" >
+		            <td><a  th:href="@{/}" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
 		            	<span class="glyphicon glyphicon-eye-open"></span></a>
 		            </td>
 		        </tr>
 		    </tbody>
 		</table>
-		
-			<div th:if="${boletoPage.totalPages > 0}" 
-			    th:each="pageNumber : ${pageNumbers}">
-		    	<a th:href="@{/consulta(size=${boletoPage.size}, page=${pageNumber})}"
-		        	th:text=${pageNumber}
-		       		 th:class="${pageNumber==boletoPage.number + 1} ? active">
-		       	</a>
-			    
-			</div>
-	
-		
-		<table class="table">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">CPF</th>
-					<th scope="col">Nome</th>
-					<th scope="col">Parcelas</th>
-					<th scope="col"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-				</tr>
-			</tbody>
-		</table>
-
-
-
-
+			<ul class="pagination">
+				<li th:if="${boletoPage.totalPages > 0}" 
+				    th:each="pageNumber : ${pageNumbers}" class="page-item">
+			    	<a th:href="@{/consulta(size=${boletoPage.size}, page=${pageNumber})}"
+			        	th:text=${pageNumber}
+			       		 th:class="${pageNumber==boletoPage.number + 1} ? active" class="page-link">
+			       	</a>
+				</li>
+			</ul>
+			
+			
 	</div>
 
 </body>
