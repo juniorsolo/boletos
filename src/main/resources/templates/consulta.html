@@ -10,7 +10,7 @@
 		<h2 style="text-align: center; margin-bottom: 30px;">
 			<span class="label label-info">Consulta de Boletos</span>
 		</h2>
-		
+		<form th:object="${boleto}" th:action="@{/verparcelas}" method="POST">
 		<table class="table">
 		    <thead class="thead-dark">
 		        <tr style="background-image: linear-gradient(to bottom,#5bc0de 0,#53cef3 100%);">
@@ -21,18 +21,21 @@
 		        </tr>
 		    </thead>
 		    <tbody>
+		    	
 		        <tr th:each="boleto, iStat : ${boletoPage.content}"
 		        	style="background-color: #dff5ff;"
 		            th:alt-title="'Ver Parcelas'">
 		            <td th:text="${boleto.cpf}" />
 		            <td th:text="${boleto.nome}" />
 		            <td th:text="${boleto.numParcelas}" style="text-align: center;" />
-		            <td style="text-align: center;"><a  th:href="@{/}" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
-		            	<span class="glyphicon glyphicon-eye-open"></span></a>
+		            <td style="text-align: center;"><button type="submit" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
+		            	<span class="glyphicon glyphicon-eye-open"></span></button>
 		            </td>
 		        </tr>
+		       
 		    </tbody>
 		</table>
+		</form>
 			<ul class="pagination">
 				<li th:if="${boletoPage.totalPages > 0}" 
 				    th:each="pageNumber : ${pageNumbers}" class="page-item">

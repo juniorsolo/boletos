@@ -69,6 +69,11 @@ public class BoletoController {
 	        }
 		return mv;
 	}
+	@PostMapping("/verparcelas")
+	public ModelAndView verParcelas(Boleto boleto) {
+		ModelAndView mv = new ModelAndView("/verparcelas");
+		return mv;
+	}
 	
 	@PostMapping("/salvarBoleto")
 	public String salvarBoleto(@Valid Boleto boleto, BindingResult bindingResult) {
