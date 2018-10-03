@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,11 +68,14 @@ public class BoletoController {
 	                .collect(Collectors.toList());
 	            mv.addObject("pageNumbers", pageNumbers);	         
 	        }
+	
 		return mv;
 	}
 	@PostMapping("/verparcelas")
-	public ModelAndView verParcelas(Boleto boleto) {
+	public ModelAndView verParcelas(@RequestParam(name = "id") String id) {
+		System.out.println("id passado: " + id);
 		ModelAndView mv = new ModelAndView("/verparcelas");
+		
 		return mv;
 	}
 	

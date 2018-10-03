@@ -11,52 +11,52 @@
 				<span class="label label-info">Parcelas</span>
 			</h2>
 			
-			<form th:object="${boleto}" th:action="@{/salvarBoleto}" method="POST">
+			
 			<nav class="navbar navbar-light" style="background-color: #e3f2fd; padding-top: 25px;">	
 					<div class="form-row">
 				  		<div class="form-group col-md-6">
 				      		<label for="inputCPF">CPF*</label>
-				      		<input type="text" maxlength="15"   class="form-control" th:field="*{cpf}" id="inputCPF" placeholder="CPF">
+				      		
 				    	</div>
 				    	<div class="form-group col-md-6">
 				    		<label for="inputEmail">Email</label>
-				        	<input type="email" maxlength="30"  class="form-control" th:field="*{email}" id="inputEmail" placeholder="Email">
+				        	
 				    	</div>
 				    </div>
 					<div class="form-row">
 				    	<div class="form-group col-md-9">
 				    		<label for="inputNome">Nome Completo*</label>
-				        	<input type="text" maxlength="60" class="form-control"th:field="*{nome}" id="inputNome" placeholder="Nome Completo">
+				        	
 				    	</div>
 				    	<div class="form-group col-md-3">
 				        	<label for="inputParcela">Num. Parcelas*</label>
-				        	<input type="number" maxlength="2" class="form-control" th:field="*{numParcelas}" id="inputParcela" placeholder="Numero de Parcelas">
+				        	
 				        </div>
 				    </div>
 				    <div class="form-row">
 				    	<div class="form-group col-md-12">
 				    		<label for="inputDescricao">Descrição</label>
-				        	<input type="text" maxlength="150" class="form-control" th:field="*{descricao}" id="inputDescricao" placeholder="Decrição da compra">
+				        	
 				    	</div>
 				    </div>
 				    <div class="form-row">
 				    	<div class="form-group col-md-4">
 				    		<label for="inputDataParcela">Data Primeira parcela*</label>
-				        	<input type="text" class="form-control" th:field="*{dataPrimeiraParcela}"  id="inputDataParcela">
+				        	
 				        </div>
 				    	<div class="form-group col-md-4">
 				    		<label for="inputTelefone">Telefone Residencial</label>
-				        	<input type="text" maxlength="14" class="form-control" th:field="*{telResidencial}" id="inputTelefone" placeholder="(xx) xxxx-xxxx">
+				        	
 				        </div>
 				        <div class="form-group col-md-4">
 				    		<label for="inputCelular">Celular</label>
-				        	<input type="text" maxlength="15" class="form-control" th:field="*{celular}" id="inputCelular" placeholder="(xx) xxxxx-xxxx">
+				        	
 				        </div>
 				    </div>
 					</nav>
 				
 				
-				</form>
+				
 				
 				
 		</div>
