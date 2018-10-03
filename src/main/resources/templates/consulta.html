@@ -26,7 +26,7 @@
 			            th:alt-title="'Ver Parcelas'">
 			            <td th:text="${boleto.cpf}" />
 			            <td th:text="${boleto.nome}" />
-			            <td th:text="${boleto.numParcelas}" style="text-align: center;" />
+			            <td th:text="${boleto.totalParcelas}" style="text-align: center;" />
 			            <td style="text-align: center;">
 			            	<form th:action="@{/verparcelas}" th:object="${boleto}"  method="post">
 			            		<input type="hidden" name="id" th:value="*{id}"></input>

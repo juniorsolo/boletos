@@ -86,9 +86,10 @@ public class BoletoService {
 	private void preencheParcelas(Boleto boleto) {
 		Parcela parcela;
 		boleto.setParcelas(new ArrayList<Parcela>());
-		for(int i = 1; i <= boleto.getNumParcelas(); i++) {
+		for(int i = 1; i <= boleto.getTotalParcelas(); i++) {
 			parcela = new Parcela();
 			parcela.setNumeroParcela(i);
+			parcela.setValor(boleto.getValor());
 			if(i == 1) {
 				parcela.setDataVencimento(boleto.getDataPrimeiraParcela());
 			}else {
@@ -120,7 +121,7 @@ public class BoletoService {
 		if(boleto.getDataPrimeiraParcela() == null) {
 			return false;
 		}
-		if(boleto.getNumParcelas() == null) {
+		if(boleto.getTotalParcelas() == null) {
 			return false;
 		}
 		if(boleto.getNome() == null) {

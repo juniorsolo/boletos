@@ -77,11 +77,11 @@ public class BoletoController {
 		return mv;
 	}
 	@PostMapping("/verparcelas")
-	public ModelAndView verParcelas(@RequestParam(name = "id") String id) {
+	public ModelAndView verParcelas(@RequestParam(name = "id") Integer id) {
 		LOG.info("id boleto: " + id);
 		ModelAndView mv;
 		if(id != null) {
-			boletoSelecionado = service.findOne(new Integer(id));
+			boletoSelecionado = service.findOne(id);
 			boletoSelecionado.getParcelas();
 			mv = new ModelAndView("/verparcelas");
 			mv.addObject("boletoSelecionado", boletoSelecionado);
@@ -106,5 +106,12 @@ public class BoletoController {
 		}
 	}
 	
+	@PostMapping("/pagarParcela")
+	public ModelAndView pagarParcela(@RequestParam(name="idParcela") Long idParcela,
+			                   @RequestParam(name="idBoleto") Integer idBoleto) {
+		LOG.info("id parcela: " + idParcela);
+		LOG.info("id boleto: " + idBoleto);
+		return this.verParcelas(idBoleto);
+	}
 	
 }

@@ -1,5 +1,6 @@
 package br.com.juniorcorp.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -28,7 +29,9 @@ public class Parcela {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", nullable= false)
 	private StatusParcela status;
-
+	
+	@Column(name = "valor", nullable= false)
+	private BigDecimal valor;
 	
 	public Long getId() {
 		return id;
@@ -60,6 +63,14 @@ public class Parcela {
 
 	public void setStatus(StatusParcela status) {
 		this.status = status;
+	}
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 
 	

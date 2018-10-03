@@ -1,5 +1,6 @@
 package br.com.juniorcorp.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -12,10 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,11 +38,7 @@ public class Boleto {
 	@Column(length=60)
 	private String nome;
 	
-	@NonNull
-	@Positive
-	@Column(length=2)
-	private Integer numParcelas;
-	
+	private Integer totalParcelas;
 	
 	@Column(length=150)
 	private String descricao;
@@ -65,6 +60,9 @@ public class Boleto {
 	
 	@OneToMany(cascade= {CascadeType.PERSIST, CascadeType.REMOVE},	orphanRemoval=true )	
 	private List<Parcela> parcelas;
+	
+	@Transient
+	private BigDecimal valor;
 	
 	public Integer getId() {
 		return id;
@@ -90,12 +88,7 @@ public class Boleto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Integer getNumParcelas() {
-		return numParcelas;
-	}
-	public void setNumParcelas(Integer numParcelas) {
-		this.numParcelas = numParcelas;
-	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -131,6 +124,18 @@ public class Boleto {
 	}
 	public void setParcelas(List<Parcela> parcelas) {
 		this.parcelas = parcelas;
+	}
+	public BigDecimal getValor() {
+		return valor;
+	}
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+	public Integer getTotalParcelas() {
+		return totalParcelas;
+	}
+	public void setTotalParcelas(Integer totalParcelas) {
+		this.totalParcelas = totalParcelas;
 	}
 	
 	
