@@ -7,13 +7,14 @@ import java.util.stream.IntStream;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,8 +27,12 @@ import br.com.juniorcorp.service.BoletoService;
 @Controller
 public class BoletoController {
 	
+	private static final Logger LOG = LogManager.getLogger(BoletoController.class);
+	
 	private static int currentPage = 1;
 	private static int pageSize = 3;
+	
+	private Boleto boletoSelecionado;
 	
 	@Autowired
 	private BoletoService service;
@@ -73,9 +78,16 @@ public class BoletoController {
 	}
 	@PostMapping("/verparcelas")
 	public ModelAndView verParcelas(@RequestParam(name = "id") String id) {
-		System.out.println("id passado: " + id);
-		ModelAndView mv = new ModelAndView("/verparcelas");
-		
+		LOG.info("id boleto: " + id);
+		ModelAndView mv;
+		if(id != null) {
+			boletoSelecionado = service.findOne(new Integer(id));
+			boletoSelecionado.getParcelas();
+			mv = new ModelAndView("/verparcelas");
+			mv.addObject("boletoSelecionado", boletoSelecionado);
+		}else {
+			mv = new ModelAndView("/consulta");	
+		}
 		return mv;
 	}
 	
@@ -93,5 +105,6 @@ public class BoletoController {
 			return "/cadastro";
 		}
 	}
-
+	
+	
 }
