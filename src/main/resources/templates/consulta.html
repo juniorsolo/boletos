@@ -38,10 +38,10 @@
 							</form>
 			            </td>
 			            <td style="text-align: center;">
-			            	<form id="formDelBoleto" th:action="@{/deletarBoleto}" th:object="${boleto}"  method="post">
+			            	<form th:action="@{/deletarBoleto}" th:object="${boleto}"  method="post">
 			            		<input type="hidden" name="idBoleto" th:value="*{id}"></input>
-				            	<button type="button" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
-				            	<span class="glyphicon glyphicon-eye-open"></span></button>
+				            	<button type="submit" class="btn btn-danger" style="width: 60px;" >
+				            	<span class="glyphicon glyphicon-trash"></span></button>
 							</form>
 			            </td>
 			        </tr>
@@ -58,6 +58,27 @@
 			       	</a>
 				</li>
 			</ul>		
+			
+			<div id="excluirBoleto" class="modal">
+				<div class="alert alert-warning" role="alert">
+  					<p>Tem certeza que deseja excluir o boleto?</p>
+				</div>
+			  	<a href="#" rel="modal:close"  onclick="alert('excluiu');" class="btn btn-danger">Excluir Boleto</a>
+			  	<a href="#" rel="modal:close" class="btn btn-warning">Cancelar</a>
+			</div>
+			<script type="text/javascript">
+				$(".linkExcluirBoleto").click(function(){
+					$("#excluirBoleto").modal({
+						  escapeClose: false,
+						  clickClose: false,
+						  showClose: false
+				
+						});	
+				});
+			   function excluirBoleto(idform){
+				   $("#formDelBoleto").submit();
+			   }
+			</script>
 			
 	</div>
 

@@ -113,6 +113,21 @@ public class BoletoController {
 		}
 	}
 	
+	@PostMapping("/deletarBoleto")
+	public String deletarBoleto(@RequestParam(name="idBoleto") Integer idBoleto) {
+		try {
+	        if (idBoleto == null) {
+	            return "/";
+	        }
+	        serviceBoleto.delete(idBoleto);
+	       
+	       return "redirect:/sucesso";
+		}catch (Exception e) {
+			
+			return "/";
+		}
+	}
+	
 	@PostMapping("/pagarParcela")
 	public ModelAndView pagarParcela(@RequestParam(name="idParcela") Long idParcela,
 			                   @RequestParam(name="idBoleto") Integer idBoleto) {
