@@ -76,7 +76,7 @@
 			        	style="background-color: #dff5ff;">
 			            <td th:text="${parcela.numeroParcela}" />
 			            <td th:text="${#dates.format(new java.util.Date(parcela.dataVencimento), 'dd/MM/yyyy')}" />
-			            <td th:text="${parcela.valor}" />
+			            <td th:text="'R$:'+${parcela.valor}" />
 			            <td th:text="${parcela.status.descricao}" style="text-align: center;" />
 						<td>
 							<form th:action="@{/pagarParcela}" th:object="${parcela}"  method="post">
@@ -87,8 +87,9 @@
 							</form>
 						</td>
 						<td>
-							<form th:action="@{/cancelarParcela}" th:object="${parcela}"  method="post">
+							<form th:action="@{/cancelarPagamento}" th:object="${parcela}"  method="post">
 			            		<input type="hidden" name="idParcela" th:value="*{id}"></input>
+			            		<input type="hidden" name="idBoleto" th:value="${boletoSelecionado.id}"></input>
 				            	<button type="submit" onclick="openModal();" class="btn btn-warning" style="width: 60px;" >
 				            	<span class="glyphicon glyphicon-ban-circle"></span></button>
 							</form>

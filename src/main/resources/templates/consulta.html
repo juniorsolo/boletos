@@ -15,8 +15,10 @@
 			        <tr style="background-image: linear-gradient(to bottom,#5bc0de 0,#53cef3 100%);">
 			            <th th:text="CPF" style="width: 15%;"/>
 			            <th th:text="Nome" />
+			            <th th:text="'Data de Criação'" style="width: 18%;"/>
 			            <th th:text="'Numero de Parcelas'" style="width: 18%;"/>
 			            <th th:text="Ver" style="width: 10%;"/>
+			            <th th:text="Apagar" style="width: 10%;"/>
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -26,11 +28,19 @@
 			            th:alt-title="'Ver Parcelas'">
 			            <td th:text="${boleto.cpf}" />
 			            <td th:text="${boleto.nome}" />
+			            <td th:text="${#dates.format(new java.util.Date(boleto.dataCriacao), 'dd/MM/yyyy')}" />
 			            <td th:text="${boleto.totalParcelas}" style="text-align: center;" />
 			            <td style="text-align: center;">
 			            	<form th:action="@{/verparcelas}" th:object="${boleto}"  method="post">
 			            		<input type="hidden" name="id" th:value="*{id}"></input>
 				            	<button type="submit" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
+				            	<span class="glyphicon glyphicon-eye-open"></span></button>
+							</form>
+			            </td>
+			            <td style="text-align: center;">
+			            	<form id="formDelBoleto" th:action="@{/deletarBoleto}" th:object="${boleto}"  method="post">
+			            		<input type="hidden" name="idBoleto" th:value="*{id}"></input>
+				            	<button type="button" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
 				            	<span class="glyphicon glyphicon-eye-open"></span></button>
 							</form>
 			            </td>

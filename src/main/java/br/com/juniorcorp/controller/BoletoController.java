@@ -1,5 +1,6 @@
 package br.com.juniorcorp.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.juniorcorp.model.Boleto;
+import br.com.juniorcorp.model.Parcela;
+import br.com.juniorcorp.model.StatusParcela;
 import br.com.juniorcorp.service.BoletoService;
+import br.com.juniorcorp.service.ParcelaService;
 
 
 @Controller
@@ -35,7 +39,10 @@ public class BoletoController {
 	private Boleto boletoSelecionado;
 	
 	@Autowired
-	private BoletoService service;
+	private BoletoService serviceBoleto;
+	
+	@Autowired
+	private ParcelaService serviceParcela;
 	
 	@RequestMapping("/")
 	public String home() {
@@ -64,7 +71,7 @@ public class BoletoController {
 		ModelAndView mv = new ModelAndView("/consulta"); 
 		 page.ifPresent(p -> currentPage = p);
 	     size.ifPresent(s -> pageSize = s);
-	     Page<Boleto> boletoPage = service.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+	     Page<Boleto> boletoPage = serviceBoleto.findPaginated(PageRequest.of(currentPage - 1, pageSize));
 		 mv.addObject("boletoPage", boletoPage);
 		 int totalPages = boletoPage.getTotalPages();
 		 if (totalPages > 0) {
@@ -81,7 +88,7 @@ public class BoletoController {
 		LOG.info("id boleto: " + id);
 		ModelAndView mv;
 		if(id != null) {
-			boletoSelecionado = service.findOne(id);
+			boletoSelecionado = serviceBoleto.findOne(id);
 			boletoSelecionado.getParcelas();
 			mv = new ModelAndView("/verparcelas");
 			mv.addObject("boletoSelecionado", boletoSelecionado);
@@ -97,7 +104,7 @@ public class BoletoController {
 	        if (bindingResult.hasErrors()) {
 	            return "/cadastro";
 	        }
-	        service.save(boleto);
+	        serviceBoleto.save(boleto);
 	       
 	       return "redirect:/sucesso";
 		}catch (Exception e) {
@@ -109,9 +116,29 @@ public class BoletoController {
 	@PostMapping("/pagarParcela")
 	public ModelAndView pagarParcela(@RequestParam(name="idParcela") Long idParcela,
 			                   @RequestParam(name="idBoleto") Integer idBoleto) {
-		LOG.info("id parcela: " + idParcela);
-		LOG.info("id boleto: " + idBoleto);
+		try {
+			LOG.info("id parcela: " + idParcela);
+			LOG.info("id boleto: " + idBoleto);
+			serviceParcela.pagarParcela(idParcela);
+		}catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+		}
+		
 		return this.verParcelas(idBoleto);
 	}
 	
+	@PostMapping("/cancelarPagamento")
+	public ModelAndView cancelarParcela(@RequestParam(name="idParcela") Long idParcela,
+										@RequestParam(name="idBoleto") Integer idBoleto) {
+		try {
+			LOG.info("id parcela: " + idParcela);
+			LOG.info("id boleto: " + idBoleto);
+			serviceParcela.cancelarPagamento(idParcela);
+			
+		}catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+		}
+		
+		return this.verParcelas(idBoleto);
+	}
 }
