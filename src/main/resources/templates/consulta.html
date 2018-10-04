@@ -38,10 +38,10 @@
 							</form>
 			            </td>
 			            <td style="text-align: center;">
-			            	<form th:action="@{/deletarBoleto}" th:object="${boleto}"  method="post">
+			            	<form th:id="'formExcluir_' + ${boleto.id}" th:action="@{/deletarBoleto}" th:object="${boleto}"  method="post">
 			            		<input type="hidden" name="idBoleto" th:value="*{id}"></input>
-				            	<button type="submit" class="btn btn-danger" style="width: 60px;" >
-				            	<span class="glyphicon glyphicon-trash"></span></button>
+				            	<a th:onclick="'javascript:modalExcluir(\'' + ${boleto.id} +'\');'" class="btn btn-danger" style="width: 60px;" >
+				            	<span class="glyphicon glyphicon-trash"></span></a>
 							</form>
 			            </td>
 			        </tr>
@@ -60,23 +60,32 @@
 			</ul>		
 			
 			<div id="excluirBoleto" class="modal">
-				<div class="alert alert-warning" role="alert">
+				<div class="alert alert-warning" role="alert" style="text-align: center;">
   					<p>Tem certeza que deseja excluir o boleto?</p>
 				</div>
-			  	<a href="#" rel="modal:close"  onclick="alert('excluiu');" class="btn btn-danger">Excluir Boleto</a>
-			  	<a href="#" rel="modal:close" class="btn btn-warning">Cancelar</a>
+			  	<a href="#" rel="modal:close"  onclick="excluirBoleto(idBoleto);" class="btn btn-danger">Excluir Boleto</a>
+			  	<a href="#" rel="modal:close" class="btn btn-warning" style="float: right;">Cancelar</a>
 			</div>
 			<script type="text/javascript">
-				$(".linkExcluirBoleto").click(function(){
-					$("#excluirBoleto").modal({
-						  escapeClose: false,
-						  clickClose: false,
-						  showClose: false
+			var idBoleto;
+		
 				
-						});	
-				});
+			function modalExcluir(id){
+				idBoleto= id;
+				console.log("id informado:" + id);
+				$("#excluirBoleto").modal({
+					  escapeClose: false,
+					  clickClose: false,
+					  showClose: false
+			
+				});	
+			};
 			   function excluirBoleto(idform){
-				   $("#formDelBoleto").submit();
+				   if(idform != null){
+				   	 $("#formExcluir_"+idform).submit();
+				   }else{
+					 console.log("id do form esta nulo ou invalido!!!"); 
+				   }
 			   }
 			</script>
 			

@@ -39,8 +39,8 @@
 				        	<input type="text" maxlength="150" class="form-control" th:field="*{descricao}" id="inputDescricao" placeholder="Decrição da compra">
 				    	</div>
 				    	<div class="form-group col-md-3">
-				        	<label for="inputValor">Valor*</label>
-				        	<input type="number" maxlength="2" class="form-control" th:field="*{valor}" id="inputValor" placeholder="Valor das Parcelas">
+				        	<label for="inputValor">Valor da Parcela*</label>
+				        	<input type="text" maxlength="10" class="form-control" th:field="*{valor}" id="inputValor" placeholder="Valor das Parcelas">
 				        </div>
 				    </div>
 				    <div class="form-row">
@@ -72,7 +72,7 @@
 				   $("#inputTelefone").mask("(00) 0000-0000");
 				   $("#inputCelular").mask("(00) 00000-0000");
 				   $('#inputDataParcela').mask('99/99/9999',{placeholder:"dd/MM/yyyy"});
-   
+	
 				</script>
 		</div>
 			

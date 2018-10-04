@@ -116,6 +116,7 @@ public class BoletoController {
 	@PostMapping("/deletarBoleto")
 	public String deletarBoleto(@RequestParam(name="idBoleto") Integer idBoleto) {
 		try {
+			LOG.info("id Boleto para deletar: " + idBoleto);
 	        if (idBoleto == null) {
 	            return "/";
 	        }
