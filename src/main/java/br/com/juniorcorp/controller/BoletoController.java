@@ -60,8 +60,10 @@ public class BoletoController {
 	
 	@GetMapping("/cadastro")
 	public ModelAndView cadastro(Boleto boleto) {
-		ModelAndView mv = new ModelAndView("/cadastro"); 
+		ModelAndView mv = new ModelAndView("/cadastro");
 		mv.addObject("boleto", boleto);
+		Iterable<Parcela> p = serviceParcela.buscaParcelasAtrasadas();
+		System.out.println(p.toString());
 		return mv;
 	}
 	

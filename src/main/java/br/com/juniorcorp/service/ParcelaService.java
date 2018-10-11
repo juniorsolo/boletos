@@ -32,6 +32,11 @@ public class ParcelaService {
 		}
 	}
 	
+	public Iterable<Parcela> buscaParcelasAtrasadas(){
+		Iterable<Parcela> parcelas = parcelaRepo.findByDataVencimentoLessThan(new Date());
+		return parcelas;
+	}
+	
 	public void delete(Long id) {
 		try {			
 			parcelaRepo.deleteById(id);
