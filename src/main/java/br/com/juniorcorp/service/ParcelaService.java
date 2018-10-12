@@ -32,9 +32,24 @@ public class ParcelaService {
 		}
 	}
 	
-	public Iterable<Parcela> buscaParcelasAtrasadas(){
-		Iterable<Parcela> parcelas = parcelaRepo.findByDataVencimentoLessThan(new Date());
-		return parcelas;
+	/**
+	 *   Atualiza o status de parcelas atrasadas.
+	 *  De: aguardando pagamento. 
+	 *  Para: em atraso.
+	 * 
+	 */
+	public void atualizaStatusParcelaAtrasada(){
+		try {
+			Iterable<Parcela> parcelas = parcelaRepo.findByDataVencimentoLessThanAndStatus(new Date(), StatusParcela.AGUARDANDO_PAGAMENTO);
+			if(parcelas != null) {
+				for (Parcela p : parcelas) {
+					p.setStatus(StatusParcela.EM_ATRASO);
+					parcelaRepo.save(p);
+				}
+			}
+		} catch(Exception e){
+			LOG.error(e.getMessage(),e);
+		}
 	}
 	
 	public void delete(Long id) {

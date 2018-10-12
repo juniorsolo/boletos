@@ -62,8 +62,6 @@ public class BoletoController {
 	public ModelAndView cadastro(Boleto boleto) {
 		ModelAndView mv = new ModelAndView("/cadastro");
 		mv.addObject("boleto", boleto);
-		Iterable<Parcela> p = serviceParcela.buscaParcelasAtrasadas();
-		System.out.println(p.toString());
 		return mv;
 	}
 	
