@@ -12,9 +12,7 @@ import br.com.juniorcorp.model.StatusParcela;
 public interface  BoletoRepository extends CrudRepository<Boleto, Integer> {
 	
 	
-//	@Query("select distinct b.id, b.celular, b.cpf, b.data_criacao, b.data_primeira_parcela, " + 
-//			" b.descricao,b.email,b.nome, b.tel_residencial, b.total_parcelas " + 
-//			" from boletos.boleto b, boletos.parcela p where p.status = :status")
-//	List<Boleto> findBoletosPerStatus(@Param("status") String status);
+	@Query("select b from boleto b join b.parcelas p where p.status = :status")
+	List<Boleto> findBoletosPerStatus(@Param("status") StatusParcela status);
 	
 }

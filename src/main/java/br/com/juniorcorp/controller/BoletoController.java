@@ -63,6 +63,8 @@ public class BoletoController {
 	public ModelAndView cadastro(Boleto boleto) {
 		ModelAndView mv = new ModelAndView("/cadastro");
 		mv.addObject("boleto", boleto);
+		
+		serviceBoleto.boletosEmAtraso();
 		return mv;
 	}
 	

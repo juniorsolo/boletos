@@ -40,8 +40,10 @@ public class BoletoService {
 		}
 	}
 	
-//	public Page<Boleto> boletosEmAtraso(Pageable pageable) {
-//		List<Boleto> boletos = (List<Boleto>) boletoRepo.findBoletosPerStatus(StatusParcela.EM_ATRASO.name().replace("_", " "));
+	public Page<Boleto> boletosEmAtraso() {
+		List<Boleto> boletos = boletoRepo.findBoletosPerStatus(StatusParcela.EM_ATRASO);
+		System.out.println(boletos);
+		return null;
 //        int pageSize = pageable.getPageSize();
 //        int currentPage = pageable.getPageNumber();
 //        int startItem = currentPage * pageSize;
@@ -57,7 +59,7 @@ public class BoletoService {
 //        Page<Boleto> boletoPage = new PageImpl<Boleto>(list, PageRequest.of(currentPage, pageSize), boletos.size());
 // 
 //        return boletoPage;
-//	}
+	}
 	
 	public Page<Boleto> findPaginated(Pageable pageable) {
 			List<Boleto> boletos = (List<Boleto>) boletoRepo.findAll();
