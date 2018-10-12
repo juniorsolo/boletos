@@ -12,5 +12,4 @@ public interface ParcelaRepository extends CrudRepository<Parcela, Long> {
 
 	Iterable<Parcela> findByDataVencimentoLessThanAndStatus(Date data, StatusParcela status);
 	
-	
 }

@@ -46,6 +46,7 @@ public class BoletoController {
 	
 	@RequestMapping("/")
 	public String home() {
+		serviceParcela.atualizaStatusParcelaAtrasada();
 		return "home";
 	}
 	
