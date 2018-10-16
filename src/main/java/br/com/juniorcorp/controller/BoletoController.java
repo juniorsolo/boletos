@@ -1,6 +1,5 @@
 package br.com.juniorcorp.controller;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.juniorcorp.model.Boleto;
-import br.com.juniorcorp.model.Parcela;
-import br.com.juniorcorp.model.StatusParcela;
 import br.com.juniorcorp.service.BoletoService;
 import br.com.juniorcorp.service.ParcelaService;
 
