@@ -40,30 +40,19 @@ public class BoletoService {
 		}
 	}
 	
-	public Page<Boleto> boletosEmAtraso() {
+	public Page<Boleto> boletosEmAtrasoPaginated(Pageable pageable) {
 		List<Boleto> boletos = boletoRepo.findBoletosPerStatus(StatusParcela.EM_ATRASO);
-		System.out.println(boletos);
-		return null;
-//        int pageSize = pageable.getPageSize();
-//        int currentPage = pageable.getPageNumber();
-//        int startItem = currentPage * pageSize;
-//        List<Boleto> list;
-// 
-//        if (boletos.size() < startItem) {
-//            list = Collections.emptyList();
-//        } else {
-//            int toIndex = Math.min(startItem + pageSize, boletos.size());
-//            list = boletos.subList(startItem, toIndex);
-//        }
-// 
-//        Page<Boleto> boletoPage = new PageImpl<Boleto>(list, PageRequest.of(currentPage, pageSize), boletos.size());
-// 
-//        return boletoPage;
+		return this.paginationBoleto(boletos, pageable);
 	}
 	
 	public Page<Boleto> findPaginated(Pageable pageable) {
 			List<Boleto> boletos = (List<Boleto>) boletoRepo.findAll();
-	        int pageSize = pageable.getPageSize();
+	        return this.paginationBoleto(boletos, pageable);
+	}
+	
+	private Page<Boleto> paginationBoleto(List<Boleto> boletos, Pageable pageable){
+		try {
+			int pageSize = pageable.getPageSize();
 	        int currentPage = pageable.getPageNumber();
 	        int startItem = currentPage * pageSize;
 	        List<Boleto> list;
@@ -78,6 +67,10 @@ public class BoletoService {
 	        Page<Boleto> boletoPage = new PageImpl<Boleto>(list, PageRequest.of(currentPage, pageSize), boletos.size());
 	 
 	        return boletoPage;
+		}catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+			return null;
+		}
 	}
 	
 	public void delete(Integer id) {

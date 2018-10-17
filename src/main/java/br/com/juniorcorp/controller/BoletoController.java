@@ -50,9 +50,9 @@ public class BoletoController {
 		return "home";
 	}
 	
-	@RequestMapping("/tasks")
+	@RequestMapping("/emAtraso")
 	public String tasks() {
-		return "tasks";
+		return "emAtraso";
 	}
 	@RequestMapping("/sucesso")
 	public String sucesso() {
@@ -63,8 +63,6 @@ public class BoletoController {
 	public ModelAndView cadastro(Boleto boleto) {
 		ModelAndView mv = new ModelAndView("/cadastro");
 		mv.addObject("boleto", boleto);
-		
-		serviceBoleto.boletosEmAtraso();
 		return mv;
 	}
 	

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: header"></head>
+	<body>
+		<div th:replace="template :: menu"></div>	
+		<div th:replace="template :: importScripts"></div>
+		<div class="container" style="max-width: 970px;">
+			
+			<h2 style="text-align: center; margin-bottom: 30px;">
+				<span class="label label-info">Boletos em Atraso</span>
+			</h2>	
+			<table class="table">
+			    <thead class="thead-dark">
+			        <tr style="background-image: linear-gradient(to bottom,#5bc0de 0,#53cef3 100%);">
+			            <th th:text="Nome" />
+			            <th th:text="Celular" />
+			            <th th:text="Telefone" />
+						<th th:text="Data Vencimento" />
+									     
+			        </tr>
+			    </thead>
+			    <tbody>
+			    	
+			        <tr th:each="boleto, iStat : ${boletoPage.content}"
+			        	style="background-color: #dff5ff;"
+			            th:alt-title="'Ver Parcelas'">
+			            <td th:text="${boleto.nome}" />
+			            <td th:text="${boleto.celular}" />
+			            <td th:text="${boleto.telefone}" />		            
+			            <td th:text="${#dates.format(new java.util.Date(boleto.datavencimento), 'dd/MM/yyyy')}" />
+			        </tr>
+			       
+			    </tbody>
+			</table>
+		</div>
+	</body>
+</html>
