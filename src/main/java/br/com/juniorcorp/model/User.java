@@ -1,5 +1,6 @@
 package br.com.juniorcorp.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -14,7 +15,10 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
+	
+	private static final long serialVersionUID = -3391715243311516293L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

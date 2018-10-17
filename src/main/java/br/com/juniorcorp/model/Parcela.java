@@ -1,5 +1,6 @@
 package br.com.juniorcorp.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -14,8 +15,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="parcela")
-public class Parcela {
+public class Parcela implements Serializable{
 	
+	private static final long serialVersionUID = -959030382858322963L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

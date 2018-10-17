@@ -1,5 +1,6 @@
 package br.com.juniorcorp.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
 @Entity(name="boleto")
-public class Boleto {
+public class Boleto implements Serializable{
+	
+	private static final long serialVersionUID = 8661116577363423092L;
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
