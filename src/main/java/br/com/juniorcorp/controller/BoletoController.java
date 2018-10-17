@@ -162,4 +162,13 @@ public class BoletoController {
 		
 		return this.verParcelas(idBoleto);
 	}
+	
+	@GetMapping("/acessoNegado")
+	public ModelAndView error() {
+	    ModelAndView mav = new ModelAndView("/acessoNegado");
+	    String errorMessage= "Você não está autorizado";
+	    mav.addObject("errorMsg", errorMessage);
+	    mav.setViewName("403");
+	    return mav;
+        }	
 }

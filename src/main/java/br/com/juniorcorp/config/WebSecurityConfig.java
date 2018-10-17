@@ -28,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    	http.authorizeRequests()
 	    	.antMatchers("/login").permitAll()
 	    	.antMatchers("/acessoNegado").permitAll()
+	    	.antMatchers("/").authenticated()
 			.antMatchers("/verparcelas").hasAnyRole("ADMIN","USER")
 			.antMatchers("/consulta").hasAnyRole("ADMIN","USER")
 			.antMatchers("/emAtraso").hasAnyRole("ADMIN","USER")
@@ -39,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	                .loginProcessingUrl("/app-login")
 	                .usernameParameter("app_username")
 	                .passwordParameter("app_password")
-	                .defaultSuccessUrl("/home")	
+	                .defaultSuccessUrl("/")	
 			.and().logout()    //logout configuration
 			.logoutUrl("/app-logout") 
 			.logoutSuccessUrl("/login")
