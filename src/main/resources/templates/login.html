@@ -11,7 +11,7 @@
         <p th:if="${param.error}" class="error">
             Bad Credentials  
         </p>
-        <form th:action="@{/app-login}" method="POST">
+        <form th:action="@{app-login}" method="POST">
             User Name : <input type="text" name="app_username"/> <br/><br/>
             Password: <input type="password" name="app_password"/> <br/><br/>
             <input type="submit" value="Login"/>
