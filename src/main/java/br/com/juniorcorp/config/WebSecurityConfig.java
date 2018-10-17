@@ -28,13 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    	http.authorizeRequests()
 	    	.antMatchers("/login").permitAll()
 	    	.antMatchers("/acessoNegado").permitAll()
-	    	.antMatchers("/").authenticated()
-			.antMatchers("/verparcelas").hasAnyRole("ADMIN","USER")
-			.antMatchers("/consulta").hasAnyRole("ADMIN","USER")
-			.antMatchers("/emAtraso").hasAnyRole("ADMIN","USER")
-			.antMatchers("/cadastro").hasAnyRole("ADMIN","USER")
+	    	.antMatchers("/","/consulta" , "/verparcelas", "/emAtraso", "/cadastro").authenticated()
 			//.antMatchers("/**").hasAnyRole("ADMIN","USER")
-	    	//.antMatchers("/**").hasAnyRole("ADMIN","USER")
 			.and().formLogin()  //login configuration
 	                .loginPage("/login")
 	                .loginProcessingUrl("/app-login")
@@ -52,4 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
+    
+    
 }
