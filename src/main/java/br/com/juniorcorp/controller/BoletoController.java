@@ -54,9 +54,23 @@ public class BoletoController {
 		return "home";
 	}
 	
-	@RequestMapping("/emAtraso")
-	public String tasks() {
-		return "emAtraso";
+	@GetMapping("/emAtraso")
+	public ModelAndView ematraso(@RequestParam("page") Optional<Integer> page, 
+			  @RequestParam("size") Optional<Integer> size) {
+		ModelAndView mv = new ModelAndView("/emAtraso"); 
+		 page.ifPresent(p -> currentPage = p);
+	     size.ifPresent(s -> pageSize = s);
+	     Page<Boleto> boletoPage = serviceBoleto.boletosEmAtrasoPaginated(PageRequest.of(currentPage - 1, pageSize));
+		 mv.addObject("boletoPage", boletoPage);
+		 int totalPages = boletoPage.getTotalPages();
+		 if (totalPages > 0) {
+	            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+	                .boxed()
+	                .collect(Collectors.toList());
+	            mv.addObject("pageNumbers", pageNumbers);	         
+	        }
+	
+		return mv;
 	}
 	@RequestMapping("/sucesso")
 	public String sucesso() {

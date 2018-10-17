@@ -15,7 +15,7 @@
 			            <th th:text="Nome" />
 			            <th th:text="Celular" />
 			            <th th:text="Telefone" />
-						<th th:text="Data Vencimento" />
+						<th th:text="'Data Vencimento'" />
 									     
 			        </tr>
 			    </thead>
@@ -27,11 +27,22 @@
 			            <td th:text="${boleto.nome}" />
 			            <td th:text="${boleto.celular}" />
 			            <td th:text="${boleto.telefone}" />		            
-			            <td th:text="${#dates.format(new java.util.Date(boleto.datavencimento), 'dd/MM/yyyy')}" />
+			            <td>
+			            	<span th:if="${boleto != null && boleto.datavencimento != null }" th:text=" ${#dates.format(new java.util.Date(boleto.datavencimento), 'dd/MM/yyyy')}"></span>
+			            </td>
 			        </tr>
 			       
 			    </tbody>
 			</table>
+			<ul class="pagination">
+				<li th:if="${boletoPage.totalPages > 0}" 
+				    th:each="pageNumber : ${pageNumbers}" class="page-item">
+			    	<a th:href="@{/consulta(size=${boletoPage.size}, page=${pageNumber})}"
+			        	th:text=${pageNumber}
+			       		 th:class="${pageNumber==boletoPage.number + 1} ? active" class="page-link">
+			       	</a>
+				</li>
+			</ul>	
 		</div>
 	</body>
 </html>
