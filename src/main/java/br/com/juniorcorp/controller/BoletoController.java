@@ -41,6 +41,13 @@ public class BoletoController {
 	@Autowired
 	private ParcelaService serviceParcela;
 	
+	@GetMapping("/app-login")
+	public ModelAndView login() {
+	    ModelAndView mav = new ModelAndView();
+	    mav.setViewName("login");
+	    return mav;
+        }	
+	
 	@RequestMapping("/")
 	public String home() {
 		serviceParcela.atualizaStatusParcelaAtrasada();

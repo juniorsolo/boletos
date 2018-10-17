@@ -1,4 +1,4 @@
-package br.com.juniorcorp.service;
+package br.com.juniorcorp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,6 +31,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), grantedAuthorities);
+        UserDetails userDetail = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), grantedAuthorities);
+        
+        return userDetail;
     }
 }

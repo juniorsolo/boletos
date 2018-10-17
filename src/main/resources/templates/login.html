@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="template :: header"></head>
+<body>
+	<div th:replace="template :: importScripts"></div>	
+	<div th:replace="template :: menu"></div>	
+
+	<div class="container" style="max-width: 970px;">
+		<h3> Spring Boot MVC Security using Thymeleaf </h3> 
+        <p th:if="${param.error}" class="error">
+            Bad Credentials  
+        </p>
+        <form th:action="@{/app-login}" method="POST">
+            User Name : <input type="text" name="app_username"/> <br/><br/>
+            Password: <input type="password" name="app_password"/> <br/><br/>
+            <input type="submit" value="Login"/>
+        </form>
+	</div>
+	
+	<div th:insert="footer"></div>
+</body>
+</html>
