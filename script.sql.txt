@@ -1,1 +1,5 @@
-insert into user(id, user_name, password) values(null, 'user','$2a$10$FqbPFNbQAmZs7c9TKkFmNeDUpr5h8PNlgbGto7MZdw3hnvC.ppMmm');
+insert into user(id, user_name, password) values(null, 'test','$2a$10$7eqMZfO9QMuN1RgS2ABXkuGQlZQFDspfwWgTh68BVlWu9ymtoWORC');
+
+insert into role(id, name) values(null, 'USER');
+
+insert into user_role(user_id,role_id) values(1,1);

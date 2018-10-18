@@ -26,9 +26,9 @@
 			            th:alt-title="'Ver Parcelas'">
 			            <td th:text="${boleto.nome}" />
 			            <td th:text="${boleto.celular}" />
-			            <td th:text="${boleto.telefone}" />		            
+			            <td th:text="${boleto.telResidencial}" />		            
 			            <td>
-			            	<span th:if="${boleto != null && boleto.datavencimento != null }" th:text=" ${#dates.format(new java.util.Date(boleto.datavencimento), 'dd/MM/yyyy')}"></span>
+			            	<span th:if="${boleto != null && boleto.dataPrimeiraParcela != null }" th:text=" ${#dates.format(new java.util.Date(boleto.dataPrimeiraParcela), 'dd/MM/yyyy')}"></span>
 			            </td>
 			        </tr>
 			       

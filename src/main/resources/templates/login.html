@@ -6,18 +6,32 @@
 	<div th:replace="template :: importScripts"></div>	
 	<div th:replace="template :: menu"></div>	
 
-	<div class="container" style="max-width: 970px;">
-		<h3> Spring Boot MVC Security using Thymeleaf </h3> 
+	<div class="container" style="max-width: 970px; text-align: center; margin-bottom: 60px;">
+		<h3>Por favor realize o login.</h3> 
         <p th:if="${param.error}" class="error">
-            Bad Credentials  
+            Login ou senha inválidos.  
         </p>
-        <form th:action="@{app-login}" method="POST">
-            User Name : <input type="text" name="app_username"/> <br/><br/>
-            Password: <input type="password" name="app_password"/> <br/><br/>
-            <input type="submit" value="Login"/>
-        </form>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" 
+        style="background-color: #f7f6f6; margin: auto; width: 600px;">
+	        <form th:action="@{app-login}" method="POST" style="margin-left: 22%; margin-top: 3%;">
+	        	<div class="form-group row">
+	        		<label for="username" class="col-sm-2 col-form-label">Usuário</label>
+	        		<div class="col-sm-6">	        	 
+		            	<input type="text" class="form-control" id="username" name="app_username" placeholder="digite o usuário"/>
+		            </div>
+	        	</div>
+	        	<div class="form-group row">
+	        		<label for="senha" class="col-sm-2 col-form-label">Senha</label>
+	            	<div class="col-sm-6">
+	            		<input type="password" class="form-control" id="senha" name="app_password" placeholder="digite a senha"/>
+	            	</div>
+	            </div>
+	            <div class="form-group row">
+	            	<input type="submit" class="btn btn-primary" style="margin-right: 25%;" value="Login" />
+	            </div>
+	        </form>
+        </nav>
 	</div>
-	
 	<div th:insert="footer"></div>
 </body>
 </html>
