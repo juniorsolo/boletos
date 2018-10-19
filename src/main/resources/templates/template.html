@@ -1,5 +1,6 @@
 <!DOCTYPE>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:security="http://www.springframework.org/schema/security">
 <head th:fragment="header">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,11 +43,11 @@
 		          </ul>
 		          <ul class="nav navbar-nav navbar-right">
 		            <li >
-		              <a href="/signin" th:href="@{/}">
+		              <a th:href="@{/login}">
 		                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
 		              </a>
 		            </li>
-		            <li >
+		            <li>
 		              <a th:href="@{#}" onclick="$('#form').submit();">
 		                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
 		              </a>

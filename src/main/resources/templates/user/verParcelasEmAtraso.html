@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: header"></head>
+	<body>
+		
+		<div th:replace="template :: menu"></div>
+		
+		<div class="container" style="max-width:970px;">
+			
+			<h2 style="text-align: center;margin-bottom: 30px;">
+				<span class="label label-info">Parcelas</span>
+			</h2>
+			
+				<nav class="navbar navbar-light" style="background-color: #e3f2fd; padding-top: 25px;">	
+					<div class="form-row">
+				  		<div class="form-group col-md-3">
+				      		<label for="inputCPF">CPF</label>
+				      		<input type="text"  class="form-control" th:value="${boletoSelecionado.cpf}" id="inputCPF" readonly="readonly" />
+				    	</div>
+				    	<div class="form-group col-md-3">
+				    		<label for="inputDataCriacao">Data de Criação</label>
+				        	<input type="text" class="form-control" th:value="${#dates.format(new java.util.Date(boletoSelecionado.dataCriacao), 'dd/MM/yyyy')}"  id="inputDataCriacao" readonly="readonly">
+				        </div>
+				    	<div class="form-group col-md-6">
+				    		<label for="inputEmail">Email</label>
+				        	<input type="email" class="form-control" th:value="${boletoSelecionado.email}" id="inputEmail" readonly="readonly" />
+				    	</div>
+				    </div>
+					<div class="form-row">
+				    	<div class="form-group col-md-9">
+				    		<label for="inputNome">Nome Completo</label>
+				        	<input type="text" class="form-control"th:value="${boletoSelecionado.nome}" id="inputNome" readonly="readonly" />
+				    	</div>
+				    	<div class="form-group col-md-3">
+				        	<label for="inputParcela">Num. Parcelas</label>
+				        	<input type="number" class="form-control" th:value="${boletoSelecionado.totalParcelas}" id="inputParcela"  readonly="readonly"/>
+				        </div>
+				    </div>
+				    <div class="form-row">
+				    	<div class="form-group col-md-12">
+				    		<label for="inputDescricao">Descrição</label>
+				        	<input type="text" class="form-control" th:value="${boletoSelecionado.descricao}" id="inputDescricao" readonly="readonly"/>
+				    	</div>
+				    </div>
+				    <div class="form-row">
+				    	<div class="form-group col-md-4">
+				    		<label for="inputDataParcela">Data Primeira parcela</label>
+				        	<input type="text" class="form-control" th:value="${#dates.format(new java.util.Date(boletoSelecionado.dataPrimeiraParcela), 'dd/MM/yyyy')}"  id="inputDataParcela" readonly="readonly">
+				        </div>
+				    	<div class="form-group col-md-4">
+				    		<label for="inputTelefone">Telefone Residencial</label>
+				        	<input type="text" class="form-control" th:value="${boletoSelecionado.telResidencial}" id="inputTelefone" readonly="readonly">
+				        </div>
+				        <div class="form-group col-md-4">
+				    		<label for="inputCelular">Celular</label>
+				        	<input type="text" class="form-control" th:value="${boletoSelecionado.celular}" id="inputCelular" readonly="readonly">
+				        </div>
+				    </div>
+				</nav>
+				<!-- Tabela com as parcelas -->
+				<table class="table">
+			    <thead class="thead-dark">
+			        <tr style="background-image: linear-gradient(to bottom,#5bc0de 0,#53cef3 100%);">
+			            <th th:text="Parcela" style="width: 15%;"/>
+			            <th th:text="'Data Vencimento'" />
+			            <th th:text="'Valor da Parcela'" />
+			            <th th:text="Status" style="width: 18%;"/>			          
+			        </tr>
+			    </thead>
+			    <tbody>			    	
+			        <tr th:each="parcela, iStat : ${boletoSelecionado.parcelas}"
+			        	style="background-color: #dff5ff;">
+			            <td th:text="${parcela.numeroParcela}" />
+			            <td th:text="${#dates.format(new java.util.Date(parcela.dataVencimento), 'dd/MM/yyyy')}" />
+			            <td th:text="'R$:'+${parcela.valor}" />
+			            <td th:text="${parcela.status.descricao}" style="text-align: center;" />					     
+			        </tr>			       
+			    </tbody>
+			</table>
+			<div id="buttonsCadastro">
+		        <a class="btn btn-warning" th:href="@{emAtraso}" >Voltar</a>			
+			</div>					
+		</div>
+		<div th:replace="template :: importScripts"></div>			
+	</body>
+</html>

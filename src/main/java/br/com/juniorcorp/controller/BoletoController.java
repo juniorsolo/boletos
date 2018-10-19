@@ -44,7 +44,7 @@ public class BoletoController {
 	@GetMapping("/login")
 	public ModelAndView login() {
 	    ModelAndView mav = new ModelAndView();
-	    mav.setViewName("login");
+	    mav.setViewName("/login/login");
 	    return mav;
    }	
 	
@@ -54,10 +54,10 @@ public class BoletoController {
 		return "home";
 	}
 	
-	@GetMapping("/emAtraso")
+	@GetMapping("emAtraso")
 	public ModelAndView ematraso(@RequestParam("page") Optional<Integer> page, 
 			  @RequestParam("size") Optional<Integer> size) {
-		ModelAndView mv = new ModelAndView("/emAtraso"); 
+		ModelAndView mv = new ModelAndView("/user/emAtraso"); 
 		 page.ifPresent(p -> currentPage = p);
 	     size.ifPresent(s -> pageSize = s);
 	     Page<Boleto> boletoPage = serviceBoleto.boletosEmAtrasoPaginated(PageRequest.of(currentPage - 1, pageSize));
@@ -72,14 +72,30 @@ public class BoletoController {
 	
 		return mv;
 	}
-	@RequestMapping("/sucesso")
+	
+	@PostMapping("/parcelasematraso")
+	public ModelAndView verParcelasEmAtraso(@RequestParam(name = "id") Integer id) {
+		LOG.info("id boleto: " + id);
+		ModelAndView mv;
+		if(id != null) {
+			boletoSelecionado = serviceBoleto.findOne(id);
+			boletoSelecionado.getParcelas();
+			mv = new ModelAndView("/user/verparcelasEmAtraso");
+			mv.addObject("boletoSelecionado", boletoSelecionado);
+		}else {
+			mv = new ModelAndView("/user/emAtraso");	
+		}
+		return mv;
+	}
+	
+	@RequestMapping("sucesso")
 	public String sucesso() {
-		return "sucesso";
+		return "/user/sucesso";
 	}
 	
 	@GetMapping("/cadastro")
 	public ModelAndView cadastro(Boleto boleto) {
-		ModelAndView mv = new ModelAndView("/cadastro");
+		ModelAndView mv = new ModelAndView("/user/cadastro");
 		mv.addObject("boleto", boleto);
 		return mv;
 	}
@@ -87,7 +103,7 @@ public class BoletoController {
 	@GetMapping("/consulta")
 	public ModelAndView consulta( @RequestParam("page") Optional<Integer> page, 
 		      					  @RequestParam("size") Optional<Integer> size) {
-		ModelAndView mv = new ModelAndView("/consulta"); 
+		ModelAndView mv = new ModelAndView("/user/consulta"); 
 		 page.ifPresent(p -> currentPage = p);
 	     size.ifPresent(s -> pageSize = s);
 	     Page<Boleto> boletoPage = serviceBoleto.findPaginated(PageRequest.of(currentPage - 1, pageSize));
@@ -108,11 +124,11 @@ public class BoletoController {
 		ModelAndView mv;
 		if(id != null) {
 			boletoSelecionado = serviceBoleto.findOne(id);
-			boletoSelecionado.getParcelas();
-			mv = new ModelAndView("/verparcelas");
+			//boletoSelecionado.getParcelas();
+			mv = new ModelAndView("/user/verparcelas");
 			mv.addObject("boletoSelecionado", boletoSelecionado);
 		}else {
-			mv = new ModelAndView("/consulta");	
+			mv = new ModelAndView("/user/consulta");	
 		}
 		return mv;
 	}
@@ -121,14 +137,14 @@ public class BoletoController {
 	public String salvarBoleto(@Valid Boleto boleto, BindingResult bindingResult) {
 		try {
 	        if (bindingResult.hasErrors()) {
-	            return "/cadastro";
+	            return "/user/cadastro";
 	        }
 	        serviceBoleto.save(boleto);
 	       
-	       return "redirect:/sucesso";
+	       return "redirect:/user/sucesso";
 		}catch (Exception e) {
 			
-			return "/cadastro";
+			return "/user/cadastro";
 		}
 	}
 	
@@ -141,7 +157,7 @@ public class BoletoController {
 	        }
 	        serviceBoleto.delete(idBoleto);
 	       
-	       return "redirect:/sucesso";
+	       return "redirect:/user/sucesso";
 		}catch (Exception e) {
 			
 			return "/";
@@ -177,9 +193,9 @@ public class BoletoController {
 		return this.verParcelas(idBoleto);
 	}
 	
-	@GetMapping("/acessoNegado")
+	@GetMapping("/acessonegado")
 	public ModelAndView error() {
-	    ModelAndView mav = new ModelAndView("/acessoNegado");
+	    ModelAndView mav = new ModelAndView("/login/acessoNegado");
 	    String errorMessage= "Você não está autorizado";
 	    mav.addObject("errorMsg", errorMessage);
 	    mav.setViewName("403");
