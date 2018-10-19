@@ -15,7 +15,7 @@
 			            <th th:text="Nome" />
 			            <th th:text="Celular" />
 			            <th th:text="Telefone" />
-						<th th:text="'Data Vencimento'" />
+						<th th:text="'Ver Parcelas'" />
 									     
 			        </tr>
 			    </thead>
@@ -28,7 +28,11 @@
 			            <td th:text="${boleto.celular}" />
 			            <td th:text="${boleto.telResidencial}" />		            
 			            <td>
-			            	<span th:if="${boleto != null && boleto.dataPrimeiraParcela != null }" th:text=" ${#dates.format(new java.util.Date(boleto.dataPrimeiraParcela), 'dd/MM/yyyy')}"></span>
+			            	<form th:action="@{/parcelasematraso}" th:object="${boleto}"  method="post">
+			            		<input type="hidden" name="id" th:value="*{id}"></input>
+				            	<button type="submit" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
+				            	<span class="glyphicon glyphicon-eye-open"></span></button>
+							</form>
 			            </td>
 			        </tr>
 			       

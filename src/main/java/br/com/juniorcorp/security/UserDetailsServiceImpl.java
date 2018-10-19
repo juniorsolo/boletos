@@ -1,4 +1,4 @@
-package br.com.juniorcorp.config;
+package br.com.juniorcorp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

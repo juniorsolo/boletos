@@ -1,4 +1,4 @@
-package br.com.juniorcorp.config;
+package br.com.juniorcorp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,8 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 	    	http.authorizeRequests()
 	    	.antMatchers("/login").permitAll()
-	    	.antMatchers("/acessoNegado").permitAll()
-	    	.antMatchers("/","/consulta" , "/verparcelas", "/emAtraso", "/cadastro").authenticated()
+	    	.antMatchers("/acessonegado").permitAll()
+	    	.antMatchers("/","/consulta" , "/verparcelas", "/emAtraso", "/cadastro","/parcelasematraso").authenticated()
 			//.antMatchers("/**").hasAnyRole("ADMIN","USER")
 			.and().formLogin()  //login configuration
 	                .loginPage("/login")
