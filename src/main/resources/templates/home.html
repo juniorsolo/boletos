@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="template :: header"></head>
 <body>
 	<div th:replace="template :: menu"></div>	
 	<div th:replace="template :: infoHome"></div>
-
+	<div sec:authorize="hasRole('USER')">Text visible to user.</div>
+        <div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+        <div sec:authorize="isAuthenticated()">
+            Text visible only to authenticated users.
+        </div>
 	<div th:insert="footer"></div>
 	<div th:replace="template :: importScripts"></div>	
 </body>

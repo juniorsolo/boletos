@@ -157,7 +157,7 @@ public class BoletoController {
 	        }
 	        serviceBoleto.delete(idBoleto);
 	       
-	       return "redirect:/user/sucesso";
+	       return "redirect:/sucesso";
 		}catch (Exception e) {
 			
 			return "/";
