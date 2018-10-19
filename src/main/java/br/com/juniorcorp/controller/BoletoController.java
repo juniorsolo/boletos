@@ -88,7 +88,7 @@ public class BoletoController {
 		return mv;
 	}
 	
-	@RequestMapping("sucesso")
+	@RequestMapping("/sucesso")
 	public String sucesso() {
 		return "/user/sucesso";
 	}
@@ -141,10 +141,10 @@ public class BoletoController {
 	        }
 	        serviceBoleto.save(boleto);
 	       
-	       return "redirect:/user/sucesso";
+	       return "redirect:/sucesso";
 		}catch (Exception e) {
 			
-			return "/user/cadastro";
+			return "/cadastro";
 		}
 	}
 	
