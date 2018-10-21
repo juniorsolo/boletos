@@ -20,6 +20,7 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
     private UserRepository userRepository;
+    private final String prefix = "ROLE_";
 
     @Override
     @Transactional(readOnly = true)
@@ -28,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         for (Role role : user.getRoles()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+            grantedAuthorities.add(new SimpleGrantedAuthority( prefix + role.getName()));
         }
 
         UserDetails userDetail = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), grantedAuthorities);
