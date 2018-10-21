@@ -1,6 +1,6 @@
 <!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:security="http://www.springframework.org/schema/security">
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="header">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,16 +42,11 @@
 		            </li>
 		          </ul>
 		          <ul class="nav navbar-nav navbar-right">
-		            <li >
-		              <a th:href="@{/login}">
-		                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
-		              </a>
-		            </li>
-		            <li>
-		              <a th:href="@{#}" onclick="$('#form').submit();">
+		            <li sec:authorize="isAuthenticated()">
+		              <a th:href="@{#}" onclick="$('#formLogout').submit();">
 		                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
 		              </a>
-		             <form style="visibility: hidden" id="form" method="POST" th:action="@{/app-logout}">
+		             <form style="visibility: hidden" id="formLogout" method="POST" th:action="@{/app-logout}">
 		             
 		             </form>
 		            </li>
