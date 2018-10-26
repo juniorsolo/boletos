@@ -5,48 +5,71 @@
 		<div th:replace="template :: menu"></div>	
 		<div th:replace="template :: importScripts"></div>
 		<div class="container" style="max-width: 970px;">
-			
-			<h2 style="text-align: center; margin-bottom: 30px;">
-				<span class="label label-info">Boletos em Atraso</span>
-			</h2>	
-			<table class="table">
-			    <thead class="thead-dark">
-			        <tr style="background-image: linear-gradient(to bottom,#5bc0de 0,#53cef3 100%);">
-			            <th th:text="Nome" />
-			            <th th:text="Celular" />
-			            <th th:text="Telefone" />
-						<th th:text="'Ver Parcelas'" />
-									     
-			        </tr>
-			    </thead>
-			    <tbody>
-			    	
-			        <tr th:each="boleto, iStat : ${boletoPage.content}"
-			        	style="background-color: #dff5ff;"
-			            th:alt-title="'Ver Parcelas'">
-			            <td th:text="${boleto.nome}" />
-			            <td th:text="${boleto.celular}" />
-			            <td th:text="${boleto.telResidencial}" />		            
-			            <td>
-			            	<form th:action="@{/parcelasematraso}" th:object="${boleto}"  method="post">
-			            		<input type="hidden" name="id" th:value="*{id}"></input>
-				            	<button type="submit" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
-				            	<span class="glyphicon glyphicon-eye-open"></span></button>
-							</form>
-			            </td>
-			        </tr>
-			       
-			    </tbody>
-			</table>
-			<ul class="pagination">
-				<li th:if="${boletoPage.totalPages > 0}" 
-				    th:each="pageNumber : ${pageNumbers}" class="page-item">
-			    	<a th:href="@{/consulta(size=${boletoPage.size}, page=${pageNumber})}"
-			        	th:text=${pageNumber}
-			       		 th:class="${pageNumber==boletoPage.number + 1} ? active" class="page-link">
-			       	</a>
-				</li>
-			</ul>	
+			<div  th:if="${boletoPage.totalPages > 0}">
+				<h2 style="text-align: center; margin-bottom: 30px;">
+					<span class="label label-info">Boletos em Atraso</span>
+				</h2>	
+				<table class="table">
+				    <thead class="thead-dark">
+				        <tr style="background-image: linear-gradient(to bottom,#5bc0de 0,#53cef3 100%);">
+				            <th th:text="Nome" />
+				            <th th:text="Celular" />
+				            <th th:text="Telefone" />
+							<th th:text="'Ver Parcelas'" />
+										     
+				        </tr>
+				    </thead>
+				    <tbody>
+				    	
+				        <tr th:each="boleto, iStat : ${boletoPage.content}"
+				        	style="background-color: #dff5ff;"
+				            th:alt-title="'Ver Parcelas'">
+				            <td th:text="${boleto.nome}" />
+				            <td th:text="${boleto.celular}" />
+				            <td th:text="${boleto.telResidencial}" />		            
+				            <td>
+				            	<form th:action="@{/parcelasematraso}" th:object="${boleto}"  method="post">
+				            		<input type="hidden" name="id" th:value="*{id}"></input>
+					            	<button type="submit" onclick="openModal();" class="btn btn-info" style="width: 60px;" >
+					            	<span class="glyphicon glyphicon-eye-open"></span></button>
+								</form>
+				            </td>
+				        </tr>
+				       
+				    </tbody>
+				</table>
+				<ul class="pagination">
+					<li th:if="${boletoPage.totalPages > 0}" 
+					    th:each="pageNumber : ${pageNumbers}" class="page-item">
+				    	<a th:href="@{/consulta(size=${boletoPage.size}, page=${pageNumber})}"
+				        	th:text=${pageNumber}
+				       		 th:class="${pageNumber==boletoPage.number + 1} ? active" class="page-link">
+				       	</a>
+					</li>
+				</ul>
+			</div>
+			<div  th:if="${boletoPage.totalPages <= 0}">
+				
+				<div id="emAtraso" class="modal" style="text-align: center;">
+					<div class="alert alert-success" role="alert">
+					    <p>No momento não existem boletos em atraso.</p>
+					</div>
+				  	<a href="#" rel="modal:close" onclick="returnHome();"  class="btn btn-success">OK</a>
+				</div>
+				<form th:id="formVoltar" th:action="@{/}" th:object="${boleto}"  method="GET">
+				</form>
+				<script type="text/javascript">
+					$("#emAtraso").modal({
+						  escapeClose: false,
+						  clickClose: false,
+						  showClose: false
+				
+					});
+					function returnHome(){
+						$("#formVoltar").submit();
+					}
+				</script>
+			</div>	
 		</div>
 	</body>
 </html>

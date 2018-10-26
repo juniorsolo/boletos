@@ -8,7 +8,10 @@
 	<!--<div th:replace="template :: menu"></div> -->	
 
 	<div class="container" style="max-width: 970px; text-align: center; margin-bottom: 60px;">
-		<h3>Por favor realize o login.</h3> 
+		<nav class="navbar navbar-expand-lg navbar-light bg-light" 
+        style="background-color: #f7f6f6; margin: auto; width: 600px;margin-bottom: 5px;">
+			<h3 class="font-weight-bold">Por favor realize o login.</h3> 	  
+		</nav>
         <p th:if="${param.error}" class="text-danger">
             Usuário ou senha inválido.  
         </p>

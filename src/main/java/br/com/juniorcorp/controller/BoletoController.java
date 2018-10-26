@@ -193,6 +193,12 @@ public class BoletoController {
 		return this.verParcelas(idBoleto);
 	}
 	
+	@PostMapping("/app-logout")
+	public String logout() {
+		return "/login";
+	}
+	
+	
 	@GetMapping("/acessonegado")
 	public ModelAndView error() {
 	    ModelAndView mav = new ModelAndView("/login/acessoNegado");

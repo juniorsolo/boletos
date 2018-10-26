@@ -21,7 +21,9 @@
 	<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="menu" style="position: static; margin-bottom: 15px;">
 	      <div class="container">
 	        <div class="navbar-header">
-	          <a class="navbar-brand" th:href="@{/}">Sistema de Boletos</a>
+	          <a class="navbar-brand" th:href="@{/}">
+	          	 <img alt="Óticas Moretto" src="imagem/oticamoretto.jpg" style="height: 110px; width: 250px;"> 
+	          </a>
 	        </div>
 	        <div class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav">
@@ -58,11 +60,11 @@
 	<!-- informações da  home -->
 	<div class="container" th:fragment="infoHome">
 		<div class="jumbotron" align="center" >
-			<h1>Sistema de Boletos</h1>
+			<h2 >Sistema de Boletos</h2>
 			<div align="center">
-				<a href="tasks" class="btn btn-lg btn-primary">Clique aqui para ver todos os boletos</a>
+				<a th:href="@{emAtraso}" class="btn btn-lg btn-danger">Clique aqui para ver os boletos em atraso.</a>
 			</div>
-		</div>
+		</div>		
 	</div>
 	<!-- Importações de scritps -->
 	<div th:fragment="importScripts">
