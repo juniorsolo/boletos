@@ -1,4 +1,7 @@
-insert into user(id, user_name, password) values(null, 'test','$2a$10$7eqMZfO9QMuN1RgS2ABXkuGQlZQFDspfwWgTh68BVlWu9ymtoWORC');
+--insert into user(id, user_name, password) values(null, 'test','$2a$10$7eqMZfO9QMuN1RgS2ABXkuGQlZQFDspfwWgTh68BVlWu9ymtoWORC');
+20moretto18
+
+insert into user(id, user_name, password) values(null, 'moretto','$2a$10$9JrAT5hVpn7PsTq54AmzKuwKuC8qxz8w1FhUwHqQqtGrlvxoiASRG');
 
 insert into role(id, name) values(null, 'USER');
 
