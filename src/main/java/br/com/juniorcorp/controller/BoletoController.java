@@ -31,7 +31,7 @@ public class BoletoController {
 	private static final Logger LOG = LogManager.getLogger(BoletoController.class);
 	
 	private static int currentPage = 1;
-	private static int pageSize = 3;
+	private static int pageSize = 10;
 	
 	private Boleto boletoSelecionado;
 	
